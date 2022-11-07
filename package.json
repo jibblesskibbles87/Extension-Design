@@ -1,0 +1,78 @@
+{
+  "name": "LeanSpec",
+  "version": "1.0.0",
+  "description": "Lean Specification document for developing extensions in ERP systems",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap-cloud-sdk/http-client": "^2.10.0",
+    "@sap-cloud-sdk/util": "^2.10.0",
+    "@sap/artifact-management": "^1.16.4",
+    "@sap/cds": "^6",
+    "@sap/low-code-event-handler": "^1.1.1",
+    "@sap/xsenv": "^3.4.0",
+    "@sap/xssec": "^3.2.14",
+    "express": "^4",
+    "hdb": "^0.19.5",
+    "passport": "^0.6.0"
+  },
+  "devDependencies": {
+    "@sap/ux-specification": "^1.102.11",
+    "sqlite3": "^5.0.4"
+  },
+  "scripts": {
+    "start": "cds run",
+    "watch-LeanSpec.ExtensionForm": "cds watch --open LeanSpec.ExtensionForm/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "engines": {
+    "node": "^16.15"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
+    },
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
+    },
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "cds": {
+    "requires": {
+      "[production]": {
+        "db": {
+          "kind": "hana-cloud"
+        }
+      },
+      "db": {
+        "kind": "sql"
+      },
+      "app-service": {
+        "impl": "@sap/low-code-event-handler"
+      },
+      "auth": {
+        "kind": "xsuaa"
+      }
+    }
+  },
+  "lcap": true,
+  "sapux": [
+    "app/LeanSpec.ExtensionForm"
+  ]
+}

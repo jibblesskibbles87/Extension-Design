@@ -1,0 +1,184 @@
+{
+    "_version": "1.44.0",
+    "sap.app": {
+        "id": "LeanSpec.ExtensionForm",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.8.0",
+            "toolsId": "3ed02eb6-c780-4223-8b30-86d22e2d2186"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/service/LeanSpec/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "LeanSpec-ExtensionForm-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "LeanSpecExtensionForm",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.104.2",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {},
+                "sap.f": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "LeanSpec.ExtensionForm.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "ExtensionsList",
+                    "target": [
+                        "ExtensionsList"
+                    ]
+                },
+                {
+                    "pattern": "Extensions({key}):?query:",
+                    "name": "ExtensionsObjectPage",
+                    "target": [
+                        "ExtensionsList",
+                        "ExtensionsObjectPage"
+                    ]
+                }
+            ],
+            "targets": {
+                "ExtensionsList": {
+                    "type": "Component",
+                    "id": "ExtensionsList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Extensions",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Extensions": {
+                                    "detail": {
+                                        "route": "ExtensionsObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
+                },
+                "ExtensionsObjectPage": {
+                    "type": "Component",
+                    "id": "ExtensionsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "Extensions",
+                            "sectionLayout": "Tabs"
+                        }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/Extensions({key})"
+                }
+            },
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
+            }
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}
